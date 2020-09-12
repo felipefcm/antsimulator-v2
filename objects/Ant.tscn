@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Ant.gd" type="Script" id=2]
+[ext_resource path="res://behaviours/SteerableBody2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/states/ants/Foraging.gd" type="Script" id=4]
+[ext_resource path="res://scripts/StateMachine.gd" type="Script" id=5]
+[ext_resource path="res://images/ant-alt.png" type="Texture" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.30468
+height = 23.6579
+
+[node name="Ant" type="Node2D"]
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 2 )
+
+[node name="SteerableBody2D" parent="." instance=ExtResource( 3 )]
+collision_mask = 7
+maxSpeed = 120
+
+[node name="Sprite" type="Sprite" parent="SteerableBody2D"]
+rotation = 0.261799
+scale = Vector2( 0.32058, 0.32058 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableBody2D"]
+visible = false
+position = Vector2( -0.809619, 0.298563 )
+rotation = 1.309
+shape = SubResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+subject = NodePath("..")
+initialState = NodePath("Foraging")
+
+[node name="Foraging" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
