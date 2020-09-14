@@ -1,11 +1,16 @@
 extends Node
 class_name State
 
-func enter(_obj: Node):
+var subject;
+
+func enter(_params: Dictionary):
 	pass;
 
-func exit(_obj: Node, _nextState: State):
+func exit(_nextState: State):
 	pass;
 
-func update(_obj: Node, _delta: float):
+func update(_delta: float):
 	pass;
+
+func onCollided(_obj: Node, _collision: KinematicCollision2D):
+	pass

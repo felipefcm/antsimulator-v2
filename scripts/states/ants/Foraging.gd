@@ -1,18 +1,34 @@
 extends State
 
-func enter(obj: Node):
+var closestFood;
+
+func enter(_params: Dictionary):
 	
-	var ant = obj as Ant;
-	# ant.connect(
+	var ant = subject as Ant;
+	closestFood = ant.findClosestFood();
+
+func exit(_nextState: State):
+	var ant = subject as Ant;
+	ant.steeringObj.setMode('Wander');
+
+func update(delta: float):
 	
-	var closestFood = ant.findClosestFood();
-	if(closestFood):
+	var ant = subject as Ant;
+	
+	if(is_instance_valid(closestFood)):
 		ant.steeringObj.setTarget(closestFood);
 		ant.steeringObj.setMode('Seek');
+	else:
+		closestFood = ant.findClosestFood();
+		if(!is_instance_valid(closestFood)):
+			ant.stateMachine.changeState('Wander');
 
-func exit(obj: Node, _nextState: State):
-	var ant = obj as Ant;
-	ant.steeringObj.setMode('None');
+func onCollided(obj: Node, collision: KinematicCollision2D):
+	
+	var ant = subject as Ant;
+	var node = collision.collider as Node2D;
 
-func update(obj: Node, delta: float):
-	var ant = obj as Ant;
+	if(!is_instance_valid(node)): return;
+
+	if(node.is_in_group('food')):
+		ant.stateMachine.changeState('CollectingFood', { 'food': node.get_node('Food') });

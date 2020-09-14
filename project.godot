@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "State",
 "language": "GDScript",
 "path": "res://scripts/states/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Ant": "",
 "Food": "",
-"State": ""
+"State": "",
+"StateMachine": ""
 }
 
 [application]
@@ -35,6 +41,10 @@ _global_script_class_icons={
 config/name="SteeringBehaviours"
 run/main_scene="res://scenarios/ForageFood.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Simulator="*res://scripts/Simulator.gd"
 
 [display]
 
@@ -116,4 +126,5 @@ ui_zoom_out={
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

@@ -6,7 +6,7 @@ export (int) var amount = 10;
 signal depleted;
 
 func _ready():
-	add_to_group('food');
+	$'..'.add_to_group('food');
 
 func collect(collectAmount):
 	amount = max(amount - collectAmount, 0);

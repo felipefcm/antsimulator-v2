@@ -50,13 +50,13 @@ __meta__ = {
 }
 
 [node name="Leaf" parent="Food" instance=ExtResource( 3 )]
-position = Vector2( 1030.75, 100.7 )
+position = Vector2( 636.58, 175.657 )
 
 [node name="Leaf2" parent="Food" instance=ExtResource( 3 )]
-position = Vector2( 826.5, 597.55 )
+position = Vector2( 614.553, 591.088 )
 
 [node name="Leaf3" parent="Food" instance=ExtResource( 3 )]
-position = Vector2( 1189.4, 397.1 )
+position = Vector2( 1064.04, 373.837 )
 
 [node name="Walls" type="Node2D" parent="."]
 __meta__ = {

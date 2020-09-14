@@ -8,7 +8,7 @@ func _ready():
 	add_to_group('nests');
 
 func _on_SpawnTimer_timeout():
-	if(ant): 
+	if(ant && Simulator.numAnts < Simulator.maxAnts):
 		var antInstance = ant.instance();
 		add_child(antInstance);
 		emit_signal('antSpawned', antInstance);
