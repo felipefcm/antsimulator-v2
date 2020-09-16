@@ -1,17 +1,10 @@
 extends KinematicBody2D
 
-export (String, 'None', 'Seek') var mode;
-
-var Behaviours = {
-	'None': null,
-	'Seek': preload('res://scripts/behaviours/Seek.gd').new(),
-	'Wander': preload('res://scripts/behaviours/Wander.gd').new(),
-};
-
 export (int) var maxSpeed = 80;
 export (float) var maxForce = 420;
 export (NodePath) var targetNode;
 
+var mode;
 var velocity = Vector2.ZERO;
 var target;
 
@@ -26,7 +19,7 @@ func _ready():
 
 func setMode(newMode):
 	mode = newMode;
-	behaviour = Behaviours[mode];
+	behaviour = SteeringBehaviours.modes[mode];
 
 func setTarget(newTarget):
 	target = newTarget;

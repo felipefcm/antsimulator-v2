@@ -14,14 +14,14 @@ func changeState(newStateName: String, params: Dictionary = {}):
 
 	if(currentState):
 		currentState.exit(newState);
-		subject.disconnect('collided', currentState, 'onCollided');
+		subject.disconnect('antCollided', currentState, 'onCollided');
 
 	currentState = newState;
 
 	if(newState):
 		newState.subject = subject;
 		newState.enter(params);
-		subject.connect('collided', currentState, 'onCollided');
+		subject.connect('antCollided', currentState, 'onCollided');
 
 func update(delta):
 	if(currentState):

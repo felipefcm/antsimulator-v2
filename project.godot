@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Simulator="*res://scripts/Simulator.gd"
+SteeringBehaviours="*res://scripts/behaviours/SteeringBehaviours.gd"
 
 [display]
 

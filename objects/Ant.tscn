@@ -17,12 +17,13 @@ scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
 
 [node name="SteerableBody2D" parent="." instance=ExtResource( 3 )]
-collision_mask = 7
+collision_mask = 6
 maxSpeed = 120
 
 [node name="Sprite" type="Sprite" parent="SteerableBody2D"]
 rotation = 0.261799
 scale = Vector2( 0.32058, 0.32058 )
+z_index = 1
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableBody2D"]
@@ -34,7 +35,6 @@ shape = SubResource( 1 )
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
 subject = NodePath("..")
-initialState = NodePath("Foraging")
 
 [node name="None" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )

@@ -1,7 +1,7 @@
 
-export (float) var circleDistance := 3;
-export (float) var circleRadius := 6;
-export (float) var maxAngleChange := 0.1;
+var circleDistance := 50;
+var circleRadius := 15;
+var maxAngleChange := deg2rad(10);
 
 func calculateSteeringForce(steeringObj, target):
 
@@ -16,7 +16,7 @@ func calculateSteeringForce(steeringObj, target):
 	var circleCenter = steeringObj.velocity.normalized() * circleDistance;
 	var displacement = (Vector2(0, 1) * circleRadius).rotated(wanderAngle);
 
-	wanderAngle += rand_range(0, maxAngleChange);
+	steeringObj.behaviourParams.wanderAngle += rand_range(-maxAngleChange, maxAngleChange);
 	
 	return circleCenter + displacement;
 	
