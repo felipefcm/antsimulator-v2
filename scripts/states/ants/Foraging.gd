@@ -27,7 +27,7 @@ func update(_delta: float):
 			ant.steeringObj.setMode('Wander');
 			return;
 		
-		if(ant.position.distance_squared_to(closestFood.position) <= minFoodDistance * minFoodDistance):
+		if(ant.steeringObj.position.distance_squared_to(closestFood.position) <= minFoodDistance * minFoodDistance):
 			targetFood = closestFood;
 
 func onCollided(_obj: Node, collision: KinematicCollision2D):

@@ -106,7 +106,7 @@ position = Vector2( 198.107, 264.97 )
 position = Vector2( 121.472, 121.189 )
 
 [node name="Nest3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 115.345, 590.227 )
+position = Vector2( 74.3339, 225.228 )
 
 [node name="Camera" type="Node2D" parent="."]
 position = Vector2( 3.05176e-05, 1.16635 )

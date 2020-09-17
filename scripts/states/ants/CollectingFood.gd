@@ -5,8 +5,8 @@ var food;
 
 func enter(params: Dictionary):
 	var ant = subject as Ant;
+	collectTimer = 0;
 	food = params.food;
-	print('got food ', food, ' amount ', food.amount);
 	ant.steeringObj.setMode('None');
 
 func exit(_nextState: State):
@@ -24,4 +24,4 @@ func update(delta: float):
 	collectTimer += delta;
 	if(collectTimer >= 1):
 		food.collect(ant.foodCapacity);
-		collectTimer = 0;
+		ant.stateMachine.changeState('StoringFood');

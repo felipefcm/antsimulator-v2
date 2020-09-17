@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Simulator="*res://scripts/Simulator.gd"
+Util="*res://scripts/Util.gd"
 SteeringBehaviours="*res://scripts/behaviours/SteeringBehaviours.gd"
 
 [display]
@@ -54,6 +55,7 @@ window/size/height=720
 window/size/test_width=1920
 window/size/test_height=1080
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [importer_defaults]
 

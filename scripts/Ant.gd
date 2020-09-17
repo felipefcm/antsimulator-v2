@@ -4,8 +4,11 @@ class_name Ant
 onready var steeringObj = $SteerableBody2D;
 onready var stateMachine = $StateMachine;
 onready var sprite = steeringObj.get_node('Sprite');
+onready var foodCarry = sprite.get_node('FoodCarry');
 
 export (int) var foodCapacity = 1;
+
+var carryingFood := false;
 
 signal antCollided;
 
@@ -42,6 +45,10 @@ func handleCollision(collision: KinematicCollision2D):
 
 	emit_signal('antCollided', self, collision);
 
+func setCarryingFood(carrying: bool):
+	carryingFood = carrying;
+	foodCarry.visible = carryingFood;
+
 func findClosestFood():
 	
 	var allFood = get_tree().get_nodes_in_group('food');
@@ -62,7 +69,12 @@ func findClosestFood():
 	return closestFood;
 
 func adjustSpriteToRotation():
-	if(steeringObj.rotation >= PI && steeringObj.rotation <= 3 * PI):
-		sprite.flip_h = true;
+
+	var intDegRotation = int(steeringObj.rotation_degrees) % 360;
+	
+	if((intDegRotation < -90 && intDegRotation > -270) || (intDegRotation > 90 && intDegRotation < 270)):
+		sprite.flip_v = true;
+		foodCarry.centered = false;
 	else:
-		sprite.flip_h = false;
+		sprite.flip_v = false;
+		foodCarry.centered = true;
