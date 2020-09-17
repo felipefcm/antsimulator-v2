@@ -8,7 +8,7 @@ func closestNode(nodes: Array, position: Vector2):
 	var closestDstSq;
 
 	for node in nodes:
-		var dstSq = position.distance_squared_to(node.position);
+		var dstSq = position.distance_squared_to(node.global_position);
 		if(!closest || dstSq < closestDstSq):
 			closest = node;
 			closestDstSq = dstSq;

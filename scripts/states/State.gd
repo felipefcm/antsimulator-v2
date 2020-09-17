@@ -13,4 +13,7 @@ func update(_delta: float):
 	pass;
 
 func onCollided(_obj: Node, _collision: KinematicCollision2D):
-	pass
+	pass;
+
+func onNest(_nest: Node):
+	pass;

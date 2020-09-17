@@ -23,6 +23,8 @@ func _physics_process(delta):
 	
 	stateMachine.update(delta);
 
+	
+
 	adjustSpriteToRotation();
 	
 	var numCollisions = steeringObj.get_slide_count();
@@ -50,25 +52,10 @@ func setCarryingFood(carrying: bool):
 	foodCarry.visible = carryingFood;
 
 func findClosestFood():
-	
-	var allFood = get_tree().get_nodes_in_group('food');
-	
-	if(allFood.size() <= 0):
-		return null;
-		
-	var closestFood;
-	var closestDstSq;
-	
-	for foodObj in allFood:
-		if(!is_instance_valid(foodObj)): continue;
-		var dstSq = position.distance_squared_to(foodObj.position);
-		if(!closestFood || dstSq < closestDstSq):
-			closestFood = foodObj;
-			closestDstSq = dstSq;
+	var allFood = get_tree().get_nodes_in_group('food');	
+	return Util.closestNode(allFood, steeringObj.global_position);
 
-	return closestFood;
-
-func adjustSpriteToRotation():
+func adjustSpriteToRotation(): 
 
 	var intDegRotation = int(steeringObj.rotation_degrees) % 360;
 	

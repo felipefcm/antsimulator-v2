@@ -8,6 +8,9 @@ var currentState: State;
 func _ready():
 	subject = get_node(subject);
 
+func getCurrentState():
+	return currentState;
+
 func changeState(newStateName: String, params: Dictionary = {}):
 
 	var newState = get_node(newStateName);

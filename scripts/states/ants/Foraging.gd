@@ -1,6 +1,6 @@
 extends State
 
-export (int) var minFoodDistance = 200;
+export (int) var minFoodDistance = 320;
 
 var targetFood;
 
@@ -27,7 +27,7 @@ func update(_delta: float):
 			ant.steeringObj.setMode('Wander');
 			return;
 		
-		if(ant.steeringObj.position.distance_squared_to(closestFood.position) <= minFoodDistance * minFoodDistance):
+		if(ant.steeringObj.global_position.distance_squared_to(closestFood.global_position) <= minFoodDistance * minFoodDistance):
 			targetFood = closestFood;
 
 func onCollided(_obj: Node, collision: KinematicCollision2D):

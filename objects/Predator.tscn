@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://behaviours/SteerableBody2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/spider.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Predator.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.7462
+
+[node name="Predator" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="SteerableBody2D" parent="." instance=ExtResource( 1 )]
+maxSpeed = 40
+turnWithVelocity = false
+
+[node name="Sprite" type="Sprite" parent="SteerableBody2D"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableBody2D"]
+position = Vector2( 0.250046, 20.5573 )
+shape = SubResource( 1 )

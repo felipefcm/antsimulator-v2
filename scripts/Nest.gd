@@ -7,6 +7,7 @@ signal antSpawned;
 
 func _ready():
 	add_to_group('nests');
+	$SpawnTimer.start();
 
 func _on_SpawnTimer_timeout():
 	if(ant && Simulator.numAnts < Simulator.maxAnts):
@@ -14,6 +15,10 @@ func _on_SpawnTimer_timeout():
 			var antInstance = ant.instance();
 			add_child(antInstance);
 			emit_signal('antSpawned', antInstance);
+
+func _on_Area2D_body_entered(body: Node):
+	if(!body.is_in_group('antSteerable')): return;
+	body.get_parent().stateMachine.getCurrentState().onNest(self);
 
 # func _process(delta):
 # 	pass;
