@@ -1,6 +1,6 @@
 extends State
 
-export (int) var minFoodDistance = 320;
+export (int) var minFoodDistance = 380;
 
 var targetFood;
 

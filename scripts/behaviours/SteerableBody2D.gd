@@ -13,9 +13,11 @@ var maxSpeedOffset = 0;
 var behaviourParams = {};
 
 var behaviour;
-var otherModes;
+var otherModes = [];
+var otherTargets = [];
 
 func _ready():
+	# velocity = Vector2(1, 0);
 	if(targetNode):
 		target = get_node(targetNode);
 
@@ -23,12 +25,17 @@ func setMode(newMode):
 	mode = newMode;
 	behaviour = SteeringBehaviours.modes[mode];
 	otherModes = [];
+	otherTargets = [];
 
-func pushMode(newMode):
+func pushMode(newMode, optTarget = null):
 	otherModes.push_back(newMode);
+	otherTargets.push_back(optTarget);
 
-func setTarget(newTarget):
-	target = newTarget;
+func setTarget(newTarget, idx = 0):
+	if(idx == 0): 
+		target = newTarget;
+	# else:
+	# 	otherTargets[idx - 1] = newTarget;
 
 func _physics_process(delta):
 	
@@ -36,12 +43,15 @@ func _physics_process(delta):
 		
 		var steeringForce = behaviour.calculateSteeringForce(self, target);
 
+		var i = 0;
 		for pushedMode in otherModes:
+			print('will process additional state ', pushedMode);
 			var otherMode = SteeringBehaviours.modes[pushedMode];
-			var pushedSteeringForce = otherMode.calculateSteeringForce(self, target);
+			var otherTarget = otherTargets[i];
+			var pushedSteeringForce = otherMode.calculateSteeringForce(self, otherTarget);
 			steeringForce += pushedSteeringForce;
 
-		velocity = velocity + steeringForce.normalized() * maxForce * delta;
+		velocity += steeringForce.normalized() * maxForce * delta;
 	else:
 		velocity = Vector2.ZERO;
 

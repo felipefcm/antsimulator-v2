@@ -11,7 +11,7 @@ radius = 17.7462
 script = ExtResource( 3 )
 
 [node name="SteerableBody2D" parent="." instance=ExtResource( 1 )]
-maxSpeed = 40
+maxSpeed = 120
 turnWithVelocity = false
 
 [node name="Sprite" type="Sprite" parent="SteerableBody2D"]

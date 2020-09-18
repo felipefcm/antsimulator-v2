@@ -11,6 +11,7 @@ func enter(_params: Dictionary):
 	nests = get_tree().get_nodes_in_group('nests');
 	closestNest = Util.closestNode(nests, ant.steeringObj.global_position);
 	
+	ant.steeringObj.maxSpeedOffset = -20;
 	ant.steeringObj.setTarget(closestNest);
 	ant.steeringObj.setMode('Seek');
 
@@ -22,7 +23,8 @@ func exit(_nextState: State):
 func onNest(_nest: Node):
 	var ant = subject as Ant;
 	ant.setCarryingFood(false);
-	ant.stateMachine.changeState('Foraging');
+	ant.queue_free();
+	Simulator.numAnts -= 1;
 
 func update(_delta: float):
 	pass;

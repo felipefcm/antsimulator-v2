@@ -9,6 +9,7 @@ onready var foodCarry = sprite.get_node('FoodCarry');
 export (int) var foodCapacity = 1;
 
 var carryingFood := false;
+var predators;
 
 signal antCollided;
 
@@ -17,16 +18,23 @@ func _ready():
 	steeringObj.add_to_group('antSteerable');
 
 	stateMachine.changeState('Foraging');
+
+	predators = get_tree().get_nodes_in_group('predators');
+	
+	# steeringObj.setMode('Flee');
+	# steeringObj.setTarget(predators[0]);
+	# steeringObj.pushMode('Flee');
 	# steeringObj.setMode('Wander');
 
 func _physics_process(delta):
 	
 	stateMachine.update(delta);
 
-	
-
 	adjustSpriteToRotation();
-	
+
+	var closestPredator = Util.closestNode(predators, steeringObj.global_position);
+	steeringObj.setTarget(closestPredator, 1);
+
 	var numCollisions = steeringObj.get_slide_count();
 	if(numCollisions > 0):
 		for collisionIdx in range(numCollisions):

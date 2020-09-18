@@ -1,4 +1,4 @@
 extends Node
 
-var maxAnts = 200;
+var maxAnts = 420;
 var numAnts = 0;

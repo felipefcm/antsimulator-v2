@@ -3,7 +3,7 @@ class_name StateMachine
 
 export (NodePath) var subject;
 
-var currentState: State;
+var currentState: State = null;
 
 func _ready():
 	subject = get_node(subject);
