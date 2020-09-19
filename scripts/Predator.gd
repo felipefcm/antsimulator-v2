@@ -1,4 +1,5 @@
-extends 'res://scripts/behaviours/SteerableBody2D.gd';
+extends SteerableBody2D
+class_name Predator
 
 # onready var stateMachine = $StateMachine;
 onready var sprite = $Sprite;

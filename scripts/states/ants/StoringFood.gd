@@ -17,6 +17,7 @@ func enter(_params: Dictionary):
 
 func exit(_nextState: State):
 	var ant = subject as Ant;
+	ant.maxSpeedOffset = 0;
 	ant.setCarryingFood(false);
 	ant.setMode('Wander');
 

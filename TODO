@@ -1,0 +1,5 @@
+
+- Rethink how nests handle collision when StoringFood
+- Spawning system
+- Rethink steerable instance specific data `behaviourParams`
+- Rethink steerable mode stacking

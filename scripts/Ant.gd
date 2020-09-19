@@ -1,9 +1,9 @@
-extends 'res://scripts/behaviours/SteerableBody2D.gd';
+extends SteerableBody2D
 class_name Ant
 
 onready var stateMachine = $StateMachine;
 onready var sprite = $Sprite;
-onready var foodCarry = sprite.get_node('FoodCarry');
+onready var foodCarry = $FoodCarry;
 
 export (int) var foodCapacity = 1;
 
@@ -13,10 +13,9 @@ var predators;
 signal antCollided;
 
 func _ready():
+	
 	add_to_group('ants');
-
 	stateMachine.changeState('Foraging');
-
 	predators = get_tree().get_nodes_in_group('predators');
 	
 	# setMode('Flee');
@@ -27,12 +26,14 @@ func _ready():
 func _physics_process(delta):
 	
 	stateMachine.update(delta);
-
 	adjustSpriteToRotation();
+	checkCollisions();
 
 	var closestPredator = Util.closestNode(predators, global_position);
 	setTarget(closestPredator, 1);
 
+	
+func checkCollisions():
 	var numCollisions = get_slide_count();
 	if(numCollisions > 0):
 		for collisionIdx in range(numCollisions):

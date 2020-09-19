@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name SteerableBody2D
 
 export (int) var maxSpeed = 70;
 export (float) var maxForce = 800;
@@ -17,7 +18,6 @@ var otherModes = [];
 var otherTargets = [];
 
 func _ready():
-	# velocity = Vector2(1, 0);
 	if(targetNode):
 		target = get_node(targetNode);
 
@@ -43,13 +43,13 @@ func _physics_process(delta):
 		
 		var steeringForce = behaviour.calculateSteeringForce(self, target);
 
-		var i = 0;
-		for pushedMode in otherModes:
-			print('will process additional state ', pushedMode);
-			var otherMode = SteeringBehaviours.modes[pushedMode];
-			var otherTarget = otherTargets[i];
-			var pushedSteeringForce = otherMode.calculateSteeringForce(self, otherTarget);
-			steeringForce += pushedSteeringForce;
+		# var i = 0;
+		# for pushedMode in otherModes:
+		# 	print('will process additional state ', pushedMode);
+		# 	var otherMode = SteeringBehaviours.modes[pushedMode];
+		# 	var otherTarget = otherTargets[i];
+		# 	var pushedSteeringForce = otherMode.calculateSteeringForce(self, otherTarget);
+		# 	steeringForce += pushedSteeringForce;
 
 		velocity += steeringForce.normalized() * maxForce * delta;
 	else:

@@ -12,7 +12,7 @@ func _unhandled_input(event: InputEvent):
 		elif(event.is_action('ui_zoom_out')):
 			camera.zoom += Vector2(zoomSensibility, zoomSensibility);
 
-func _process(delta):
+func _process(_delta):
 	
 	var leftStr = Input.get_action_strength('ui_left');
 	var rightStr = Input.get_action_strength('ui_right');

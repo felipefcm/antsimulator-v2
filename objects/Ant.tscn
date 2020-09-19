@@ -23,11 +23,11 @@ scale = Vector2( 0.32058, 0.32058 )
 z_index = 1
 texture = ExtResource( 6 )
 
-[node name="FoodCarry" type="Sprite" parent="Sprite"]
+[node name="FoodCarry" type="Sprite" parent="."]
 visible = false
-position = Vector2( 3.11707, -24.1572 )
+position = Vector2( 0.99927, -7.74432 )
 rotation = 0.80189
-scale = Vector2( 1.05506, 1.05506 )
+scale = Vector2( 0.338231, 0.338231 )
 z_index = 1
 texture = ExtResource( 8 )
 offset = Vector2( -1.90735e-06, -1.90735e-06 )
