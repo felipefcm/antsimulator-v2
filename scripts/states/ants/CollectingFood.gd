@@ -7,11 +7,11 @@ func enter(params: Dictionary):
 	var ant = subject as Ant;
 	collectTimer = 0;
 	food = params.food;
-	ant.steeringObj.setMode('None');
+	ant.setMode('None');
 
 func exit(_nextState: State):
 	var ant = subject as Ant;
-	ant.steeringObj.setMode('None');
+	ant.setMode('None');
 
 func update(delta: float):
 	

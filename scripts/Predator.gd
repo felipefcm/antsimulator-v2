@@ -1,18 +1,17 @@
-extends Node2D
+extends 'res://scripts/behaviours/SteerableBody2D.gd';
 
-onready var steeringObj = $SteerableBody2D;
 # onready var stateMachine = $StateMachine;
-onready var sprite = steeringObj.get_node('Sprite');
+onready var sprite = $Sprite;
 
 func _ready():
 	add_to_group('predators');
-	steeringObj.setMode('Wander');
+	setMode('Wander');
 
 func _physics_process(_delta):
 	adjustSprite();
 
 func adjustSprite():
-	if(steeringObj.velocity.x < 0):
+	if(velocity.x < 0):
 		sprite.flip_h = true;
 	else:
 		sprite.flip_h = false;

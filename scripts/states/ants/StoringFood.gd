@@ -9,16 +9,16 @@ func enter(_params: Dictionary):
 	ant.setCarryingFood(true);
 	
 	nests = get_tree().get_nodes_in_group('nests');
-	closestNest = Util.closestNode(nests, ant.steeringObj.global_position);
+	closestNest = Util.closestNode(nests, ant.global_position);
 	
-	ant.steeringObj.maxSpeedOffset = -20;
-	ant.steeringObj.setTarget(closestNest);
-	ant.steeringObj.setMode('Seek');
+	ant.maxSpeedOffset = -20;
+	ant.setTarget(closestNest);
+	ant.setMode('Seek');
 
 func exit(_nextState: State):
 	var ant = subject as Ant;
 	ant.setCarryingFood(false);
-	ant.steeringObj.setMode('Wander');
+	ant.setMode('Wander');
 
 func onNest(_nest: Node):
 	var ant = subject as Ant;

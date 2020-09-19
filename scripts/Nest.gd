@@ -17,10 +17,11 @@ func _on_SpawnTimer_timeout():
 			emit_signal('antSpawned', antInstance);
 
 func _on_Area2D_body_entered(body: Node):
-	if(!body.is_in_group('antSteerable')): return;
-	var antBody = body.get_parent();
-	if(antBody.stateMachine.getCurrentState()):
-		antBody.stateMachine.getCurrentState().onNest(self);
+	
+	if(!body.is_in_group('ants')): return;
+	
+	if(body.stateMachine.getCurrentState()):
+		body.stateMachine.getCurrentState().onNest(self);
 
 # func _process(delta):
 # 	pass;

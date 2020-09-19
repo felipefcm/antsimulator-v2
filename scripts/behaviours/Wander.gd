@@ -18,5 +18,4 @@ func calculateSteeringForce(steeringObj, _target):
 
 	steeringObj.behaviourParams.wanderAngle += rand_range(-maxAngleChange, maxAngleChange);
 	
-	return circleCenter + displacement;
-	
+	return circleCenter + displacement;	

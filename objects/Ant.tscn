@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/states/ants/CollectingFood.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Ant.gd" type="Script" id=2]
-[ext_resource path="res://behaviours/SteerableBody2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/states/ants/Foraging.gd" type="Script" id=4]
 [ext_resource path="res://scripts/StateMachine.gd" type="Script" id=5]
 [ext_resource path="res://images/ant-alt.png" type="Texture" id=6]
@@ -11,23 +10,20 @@
 [ext_resource path="res://scripts/states/ants/StoringFood.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.30468
-height = 23.6579
+radius = 5.42771
+height = 20.9831
 
-[node name="Ant" type="Node2D"]
+[node name="Ant" type="KinematicBody2D"]
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
-
-[node name="SteerableBody2D" parent="." instance=ExtResource( 3 )]
-collision_mask = 6
 maxSpeed = 120
 
-[node name="Sprite" type="Sprite" parent="SteerableBody2D"]
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.32058, 0.32058 )
 z_index = 1
 texture = ExtResource( 6 )
 
-[node name="FoodCarry" type="Sprite" parent="SteerableBody2D/Sprite"]
+[node name="FoodCarry" type="Sprite" parent="Sprite"]
 visible = false
 position = Vector2( 3.11707, -24.1572 )
 rotation = 0.80189
@@ -36,10 +32,10 @@ z_index = 1
 texture = ExtResource( 8 )
 offset = Vector2( -1.90735e-06, -1.90735e-06 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.809619, 0.298563 )
-rotation = 1.309
+position = Vector2( -0.179838, -3.32271 )
+rotation = 1.38752
 shape = SubResource( 1 )
 
 [node name="StateMachine" type="Node" parent="."]
