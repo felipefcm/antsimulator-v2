@@ -1,12 +1,11 @@
 extends Node
 class_name StateMachine
 
-export (NodePath) var subject;
-
+var subject: Node;
 var currentState: State = null;
 
 func _ready():
-	subject = get_node(subject);
+	subject = get_node('..');
 
 func getCurrentState():
 	return currentState;
@@ -17,14 +16,14 @@ func changeState(newStateName: String, params: Dictionary = {}):
 
 	if(currentState):
 		currentState.exit(newState);
-		subject.disconnect('antCollided', currentState, 'onCollided');
+		subject.disconnect('collided', currentState, 'onCollided');
 
 	currentState = newState;
 
 	if(newState):
 		newState.subject = subject;
 		newState.enter(params);
-		subject.connect('antCollided', currentState, 'onCollided');
+		subject.connect('collided', currentState, 'onCollided');
 
 func update(delta):
 	if(currentState):

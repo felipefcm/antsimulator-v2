@@ -10,7 +10,7 @@ export (int) var foodCapacity = 1;
 var carryingFood := false;
 var predators;
 
-signal antCollided;
+signal collided;
 
 func _ready():
 	
@@ -22,26 +22,23 @@ func _ready():
 	# setTarget(predators[0]);
 	# pushMode('Flee');
 	# setMode('Wander');
-
+	
 func _physics_process(delta):
-	
+		
 	stateMachine.update(delta);
+		
+	_checkCollisions();
 	adjustSpriteToRotation();
-	checkCollisions();
-
-	var closestPredator = Util.closestNode(predators, global_position);
-	setTarget(closestPredator, 1);
-
 	
-func checkCollisions():
+func _checkCollisions():
 	var numCollisions = get_slide_count();
 	if(numCollisions > 0):
 		for collisionIdx in range(numCollisions):
 			var collision: KinematicCollision2D = get_slide_collision(collisionIdx);
 			if(!collision || !collision.collider): continue;
-			handleCollision(collision);
+			_handleCollision(collision);
 
-func handleCollision(collision: KinematicCollision2D):
+func _handleCollision(collision: KinematicCollision2D):
 	
 	var collider = collision.collider as Node2D;
 	
@@ -52,7 +49,7 @@ func handleCollision(collision: KinematicCollision2D):
 	if(collider.is_in_group('ants')):
 		return;
 
-	emit_signal('antCollided', self, collision);
+	emit_signal('collided', collider);
 
 func setCarryingFood(carrying: bool):
 	carryingFood = carrying;

@@ -1,6 +1,6 @@
 extends State
 
-export (int) var minFoodDistance = 380;
+export (int) var minFoodDistance = 200;
 
 var targetFood;
 
@@ -30,12 +30,9 @@ func update(_delta: float):
 		if(ant.global_position.distance_squared_to(closestFood.global_position) <= minFoodDistance * minFoodDistance):
 			targetFood = closestFood;
 
-func onCollided(_obj: Node, collision: KinematicCollision2D):
-	
-	var ant = subject as Ant;
-	var collider = collision.collider as Node2D;
+func onCollided(collider: Node):
 
-	if(!is_instance_valid(collider)): return;
+	var ant = subject as Ant;
 
 	if(collider.is_in_group('food')):
 		ant.stateMachine.changeState('CollectingFood', { 'food': collider.get_node('Food') });

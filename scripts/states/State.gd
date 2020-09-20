@@ -12,8 +12,5 @@ func exit(_nextState: State):
 func update(_delta: float):
 	pass;
 
-func onCollided(_obj: Node, _collision: KinematicCollision2D):
-	pass;
-
-func onNest(_nest: Node):
+func onCollided(_collider: Node):
 	pass;

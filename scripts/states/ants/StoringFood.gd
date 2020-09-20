@@ -21,14 +21,11 @@ func exit(_nextState: State):
 	ant.setCarryingFood(false);
 	ant.setMode('Wander');
 
-func onNest(_nest: Node):
+func onCollided(collider: Node):
+	
 	var ant = subject as Ant;
-	ant.setCarryingFood(false);
-	ant.queue_free();
-	Simulator.numAnts -= 1;
-
-func update(_delta: float):
-	pass;
-
-func onCollided(_obj: Node, _collision: KinematicCollision2D):
-	pass;
+	
+	if(collider.is_in_group('nests')):
+		ant.setCarryingFood(false);
+		ant.queue_free();
+		Simulator.numAnts -= 1;

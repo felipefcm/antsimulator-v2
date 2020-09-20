@@ -58,7 +58,6 @@ _global_script_class_icons={
 
 config/name="SteeringBehaviours"
 run/main_scene="res://scenarios/ForageFood.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

@@ -40,7 +40,6 @@ shape = SubResource( 1 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
-subject = NodePath("..")
 
 [node name="None" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
